@@ -1,0 +1,23 @@
+.RubikPiece {
+  height: 50px;
+  width: 50px;
+  border: solid 0.1rem rgb(80, 80, 80);
+  border-radius: 0.5rem;
+  background-color: rgb(143, 143, 143);
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.RubikPiece:hover {
+  transform: scale(1.1);
+}
+
+.RubikPiece p {
+  color: rgb(71, 71, 71);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+}

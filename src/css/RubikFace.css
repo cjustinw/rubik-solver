@@ -1,0 +1,11 @@
+.RubikFace {
+  height: 154px;
+  width: 154px;
+  border: solid 0.1rem rgb(80, 80, 80);
+  border-radius: 0.5rem;
+  background-color: rgb(104, 104, 104);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
