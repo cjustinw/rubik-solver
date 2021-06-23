@@ -46,7 +46,6 @@ const RubikBox = ({solveCube}) => {
   
   const onReaderLoad = (e) => {
     let File = JSON.parse(e.target.result);
-    console.log(File.cube);
     setCube(File.cube);
   }
 
