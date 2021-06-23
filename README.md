@@ -12,13 +12,13 @@ Aplikasi website untuk menyelesaikan persoalan rubik 3x3 yang dibangun dengan me
 - Tekan tombol "Input File"
 - Tekan tombol "Choose File"
 - Pilih file eksternal dengan format JSON 
-  -- Konfigurasi file JSON:
-  -- face1: front side
-  -- face2: right side
-  -- face3: back side
-  -- face4: left side
-  -- face5: up side
-  -- face6: down side
+  - Konfigurasi file JSON:
+  - face1: front side
+  - face2: right side
+  - face3: back side
+  - face4: left side
+  - face5: up side
+  - face6: down side
 - Tekan tombol "Solve"
 
 ### Input konfigurasi oleh user
