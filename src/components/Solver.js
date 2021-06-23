@@ -50,33 +50,6 @@ const sortColorState = (state) => {
 }
 const move = ["U'", "U", "U2", "D'", "D", "D2", "F'", "F", "F2", "B'", "B", "B2", "R'", "R", "R2", "L'", "L", "L2"];
 
-const moveCost = {
-  corner: [
-    [0, 1, 1, 1, 1, 1, 2, 1],
-    [1, 0, 1, 1, 1, 1, 1, 2],
-    [1, 1, 0, 1, 2, 1, 1, 1],
-    [1, 1, 1, 0, 1, 2, 1, 1],
-    [1, 1, 2, 1, 0, 1, 1, 1],
-    [1, 1, 1, 2, 1, 0, 1, 1],
-    [2, 1, 1, 1, 1, 1, 0, 1],
-    [1, 2, 1, 1, 1, 1, 1, 0]
-  ],
-  edge: [
-    [0, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2],
-    [1, 0, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2],
-    [1, 1, 0, 1, 2, 2, 1, 1, 2, 2, 1, 2],
-    [1, 1, 1, 0, 1, 2, 2, 1, 2, 2, 2, 1],
-    [1, 2, 2, 1, 0, 1, 2, 1, 1, 2, 2, 1],
-    [1, 1, 2, 2, 1, 0, 1, 2, 1, 1, 2, 2],
-    [2, 1, 1, 2, 2, 1, 0, 1, 2, 1, 1, 2],
-    [2, 2, 1, 1, 1, 2, 1, 0, 2, 2, 1, 1],
-    [1, 2, 2, 2, 1, 1, 2, 2, 0, 1, 1, 1],
-    [2, 1, 2, 2, 2, 1, 1, 2, 1, 0, 1, 1],
-    [2, 2, 1, 2, 2, 2, 1, 1, 1, 1, 0, 1],
-    [2, 2, 2, 1, 1, 2, 2, 1, 1, 1, 1, 0]
-  ]
-}
-
 const isGoalState = (state) => {
   for(let i = 0; i < goalState.corner.length; i++){
     if(state.corner[i] !== goalState.corner[i]){
@@ -307,14 +280,26 @@ const Breverse = (state) => {
   return newState;
 }
 
+const coordinate = {
+  corner: [[0, 0, 0], [2, 0, 0], [2, 0, 2], [0, 0, 2], [0, 2, 0], [2, 2, 0], [2, 2, 2], [0, 2, 2]],
+  edge: [[1, 0, 0], [2, 0, 1], [1, 0, 2], [0, 0, 1], [0, 1, 0], [2, 1, 0], [2, 1, 2], [0, 1, 2], [1, 2, 0], [2, 2, 1], [1, 2, 2], [0, 2, 1]]
+}
+
+const manhattanDistance = (state1, state2) => {
+  if(state1 instanceof Array && state2 instanceof Array){
+    return Math.abs(state1[0] - state2[0]) + Math.abs(state1[1] - state2[1]) + Math.abs(state1[2] - state2[2]);
+  }
+}
+
 const heuristik = (state) => {
-  let count = 0;
+  let count1 = 0;
+  let count2 = 0;
   let goal = sortColorState(goalState);
   let newState = sortColorState({corner: {...state.corner}, edge: {...state.edge}});
   for(let i = 0; i < newState.corner.length; i++){
     for(let j = 0; j < goal.corner.length; j++){
       if(newState.corner[i] === goal.corner[j]){
-        count += moveCost.corner[i][j];
+        count1 += manhattanDistance(coordinate.corner[i], coordinate.corner[j]);
         break;
       }
     }
@@ -322,12 +307,14 @@ const heuristik = (state) => {
   for(let i = 0; i < newState.edge.length; i++){
     for(let j = 0; j < goal.edge.length; j++){
       if(newState.edge[i] === goal.edge[j]){
-        count += moveCost.edge[i][j];
+        count2 += manhattanDistance(coordinate.edge[i], coordinate.edge[j]);
         break;
       }
     }
   }
-  return count/8;
+  count1 = count1/4;
+  count2 = count2/4;
+  return Math.max(count1, count2);
 }
 
 const isMember = (state, array) => {
@@ -411,32 +398,63 @@ const moveTo = (direction, state) => {
   return null;
 }
 
-const constraintMove = (lastMove, nextMove) => {
-  if((lastMove === "U" || lastMove === "U2" || lastMove === "U'" )
-  && (nextMove === "U" || nextMove === "U2" || nextMove === "U'")){
-    return false;
+const constraintMove = (arrayMove, nextMove) => {
+  if(arrayMove instanceof Array){
+    let lastMove = arrayMove[arrayMove.length-1];
+    let lastMove2 = "";
+    if(arrayMove.length > 1){
+      lastMove2 = arrayMove[arrayMove.length-2];
+    }
+    if((lastMove === "U" || lastMove === "U2" || lastMove === "U'" )
+    && (nextMove === "U" || nextMove === "U2" || nextMove === "U'")){
+      return false;
+    }
+    else if((lastMove === "D" || lastMove === "D2" || lastMove === "D'" )
+    && (nextMove === "D" || nextMove === "D2" || nextMove === "D'")){
+      return false;
+    }
+    else if((lastMove === "F" || lastMove === "F2" || lastMove === "F'" )
+    && (nextMove === "F" || nextMove === "F2" || nextMove === "F'")){
+      return false;
+    }
+    else if((lastMove === "B" || lastMove === "B2" || lastMove === "B'" )
+    && (nextMove === "B" || nextMove === "B2" || nextMove === "B'")){
+      return false;
+    }
+    else if((lastMove === "R" || lastMove === "R2" || lastMove === "R'" )
+    && (nextMove === "R" || nextMove === "R2" || nextMove === "R'")){
+      return false;
+    }
+    else if((lastMove === "L" || lastMove === "L2" || lastMove === "L'" )
+    && (nextMove === "L" || nextMove === "L2" || nextMove === "L'")){
+      return false;
+    }
+    else if((lastMove2 === "U" || lastMove2 === "U2" || lastMove2 === "U'" ) && (lastMove === "D" || lastMove === "D2" || lastMove === "D'" )
+    && (nextMove === "U" || nextMove === "U2" || nextMove === "U'")){
+      return false;
+    }
+    else if((lastMove2 === "D" || lastMove2 === "D2" || lastMove2 === "D'" ) && (lastMove === "U" || lastMove === "U2" || lastMove === "U'" )
+    && (nextMove === "D" || nextMove === "D2" || nextMove === "D'")){
+      return false;
+    }
+    else if((lastMove2 === "F" || lastMove2 === "F2" || lastMove2 === "F'" ) && (lastMove === "B" || lastMove === "B2" || lastMove === "B'" )
+    && (nextMove === "F" || nextMove === "F2" || nextMove === "F'")){
+      return false;
+    }
+    else if((lastMove2 === "B" || lastMove2 === "B2" || lastMove2 === "B'" ) && (lastMove === "F" || lastMove === "F2" || lastMove === "F'" )
+    && (nextMove === "B" || nextMove === "B2" || nextMove === "B'")){
+      return false;
+    }
+    else if((lastMove2 === "R" || lastMove2 === "R2" || lastMove2 === "R'" ) && (lastMove === "L" || lastMove === "L2" || lastMove === "L'" )
+    && (nextMove === "R" || nextMove === "R2" || nextMove === "R'")){
+      return false;
+    }
+    else if((lastMove2 === "L" || lastMove2 === "L2" || lastMove2 === "L'" ) && (lastMove === "R" || lastMove === "R2" || lastMove === "R'" )
+    && (nextMove === "L" || nextMove === "L2" || nextMove === "L'")){
+      return false;
+    }
+    return true;
   }
-  else if((lastMove === "D" || lastMove === "D2" || lastMove === "D'" )
-  && (nextMove === "D" || nextMove === "D2" || nextMove === "D'")){
-    return false;
-  }
-  else if((lastMove === "F" || lastMove === "F2" || lastMove === "F'" )
-  && (nextMove === "F" || nextMove === "F2" || nextMove === "F'")){
-    return false;
-  }
-  else if((lastMove === "B" || lastMove === "B2" || lastMove === "B'" )
-  && (nextMove === "B" || nextMove === "B2" || nextMove === "B'")){
-    return false;
-  }
-  else if((lastMove === "R" || lastMove === "R2" || lastMove === "R'" )
-  && (nextMove === "R" || nextMove === "R2" || nextMove === "R'")){
-    return false;
-  }
-  else if((lastMove === "L" || lastMove === "L2" || lastMove === "L'" )
-  && (nextMove === "L" || nextMove === "L2" || nextMove === "L'")){
-    return false;
-  }
-  return true;
 }
 
 export const solve = (cube) => {
@@ -484,7 +502,7 @@ const IDAstar = (arrayState, arrayMove, g, bound) => {
     let queue = [];
     
     move.forEach(elmt => {
-      if(constraintMove(prevMove, elmt)){
+      if(constraintMove(arrayMove, elmt)){
         let tmp = moveTo(elmt, state);
         if(tmp !== null && !isMember(tmp, arrayState)){
           queue.push({
