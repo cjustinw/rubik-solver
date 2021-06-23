@@ -28,11 +28,28 @@ td {
   flex-direction: column;
   width: 85%;
   max-width: 1200px;
-  min-width: 800px;
+  min-width: 1000px;
   min-height: 100vh;
   justify-self: center;
   word-break: break-all;
   background-color: rgb(61, 61, 61);
   border-left: solid 0.2rem rgb(80, 80, 80);
   border-right: solid 0.2rem rgb(80, 80, 80);
+}
+
+#title {
+  align-self: center;
+  margin-top: 2rem;
+}
+
+#nama {
+  align-self: center;
+  margin-top: 1rem;
+}
+
+#loading {
+  align-self: center;
+  max-height: 300px;
+  margin-bottom: 2rem;
+  padding: 2rem;
 }

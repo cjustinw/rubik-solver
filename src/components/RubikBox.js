@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {solve} from '../components/Solver'
 import '../css/RubikBox.css'
 import ColorPicker from './ColorPicker';
 import RubikFace from './RubikFace';
 
-const RubikBox = () => {
+const RubikBox = ({solveCube}) => {
   const [colorPicked, setColorPicked] = useState("");
   const [cube, setCube] = useState({
     face1: null,
@@ -38,10 +37,6 @@ const RubikBox = () => {
     setCube(newCube);
   }
 
-  const solveCube = () => {
-    solve(cube);
-  }
-
   return (
     <div className="RubikBox">
       <div className="rubik-container">
@@ -68,8 +63,7 @@ const RubikBox = () => {
         </div>
       </div>
         <div id="button-control">
-          <button onClick={() => solveCube()}>Solve</button>
-          <button type="">Reset</button>
+          <button onClick={() => solveCube(cube)}>Solve</button>
         </div>
     </div>
   )
