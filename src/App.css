@@ -53,3 +53,8 @@ td {
   margin-bottom: 2rem;
   padding: 2rem;
 }
+
+#error {
+  align-self: center;
+  margin-top: 2rem;
+}

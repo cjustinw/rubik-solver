@@ -457,9 +457,36 @@ const constraintMove = (arrayMove, nextMove) => {
   }
 }
 
+const canSolve = (state) => {
+  let count1 = 0;
+  let count2 = 0;
+  let goal = sortColorState(goalState);
+  let newState = sortColorState({corner: {...state.corner}, edge: {...state.edge}});
+  goal.corner.sort();
+  goal.edge.sort();
+  newState.corner.sort();
+  newState.edge.sort();
+  for(let i = 0; i < goal.corner.length; i++){
+    if(newState.corner[i] === goal.corner[i]){
+      count1++;
+    }
+  }
+  for(let i = 0; i < goal.edge.length; i++){
+    if(newState.edge[i] === goal.edge[i]){
+      count2++;
+    }
+  }
+  console.log(count1 + " " + count2);
+  console.log(goal);
+  console.log(newState);
+  return (count1 === 8 && count2 === 12);
+}
+
 export const solve = (cube) => {
   const state = initialState(cube);
-  console.log(state);
+  if(!canSolve(state)){
+    return false;
+  }
   let arrayState = [];
   let arrayMove = [];
   let bound = heuristik(state);
