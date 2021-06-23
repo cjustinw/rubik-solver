@@ -2,8 +2,11 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 import Result from './components/Result';
 import RubikBox from './components/RubikBox';
-import {solve} from './components/Solver';
 import Loading from './image/loading.svg';
+
+import worker from 'workerize-loader!./components/worker' /* eslint-disable-line import/no-webpack-loader-syntax */
+
+const workerInstance = worker();
 
 function App() {
   const [result, setResult] = useState(null);
@@ -14,15 +17,14 @@ function App() {
     setResult(null);
     setLoading(true);
     setError(false);
-    setTimeout(() => {
-      let result = solve(cube);
-      if(result){
-        setResult(result);
+    workerInstance.solveCube(cube).then( res => {
+      if(res){
+        setResult(res);
       }
       else{
         setError(true);
       }
-    }, 1000);
+    })
   }
 
   useEffect(() => {
