@@ -1,6 +1,8 @@
 # Rubik's Cube Solver
 Aplikasi website untuk menyelesaikan persoalan rubik 3x3 yang dibangun dengan menggunakan framework React JS.
 
+https://cjustinw-rubik-solver.herokuapp.com/
+
 
 ## Installasi Program 
 - npm install
