@@ -479,13 +479,11 @@ const canSolve = (state) => {
       count2++;
     }
   }
-  console.log(count1 + " " + count2);
   return (count1 === 8 && count2 === 12);
 }
 
 export const solve = (cube) => {
   const state = initialState(cube);
-  console.log(state);
   if(!canSolve(state)){
     return false;
   }
