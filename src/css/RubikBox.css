@@ -1,0 +1,109 @@
+.RubikBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 3rem 0;
+  align-self: center;
+  height: 630px;
+  width: 800px;
+  border: none;
+  border-radius: 1rem;
+  background-color: rgb(70, 70, 70);
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+}
+
+.input-container {
+  display: flex;
+  height: 462px;
+  width: 616px;
+  justify-content: center;
+  align-items: center;
+}
+
+.rubik-container {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  height: 462px;
+  width: 616px;
+}
+
+#rubik-face-1 {
+  grid-column-start: 1;
+  grid-column-start: 2;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+}
+
+#rubik-face-2 {
+  grid-column-start: 0;
+  grid-column-start: 1;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+}
+
+#rubik-face-3 {
+  grid-column-start: 1;
+  grid-column-start: 2;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+}
+
+#rubik-face-4 {
+  grid-column-start: 2;
+  grid-column-start: 3;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+}
+
+#rubik-face-5 {
+  grid-column-start: 3;
+  grid-column-start: 4;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+}
+
+#rubik-face-6 {
+  grid-column-start: 1;
+  grid-column-start: 2;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+}
+
+#color-picker {
+  grid-column-start: 3;
+  grid-column-start: 4;
+}
+
+.button-control button {
+  margin: 3rem 0.5rem 1rem;
+  grid-column-start: 0;
+  grid-column-start: 1;
+  background-color: rgb(182, 42, 42);
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  width: 150px;
+}
+
+.button-control button:hover {
+  transform: scale(1.1);
+}
+
+#file {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+}
+
+#file::-webkit-file-upload-button {
+  height: 40px;
+  width: 50%;
+  cursor: pointer;
+  border: none;
+  margin-right: 2rem;
+  background-color: rgb(182, 42, 42);
+  color: rgb(226, 226, 226);
+}

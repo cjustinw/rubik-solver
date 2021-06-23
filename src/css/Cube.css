@@ -1,8 +1,7 @@
 #wrapD3Cube {
   width: 250px;
   height: 250px;
-  margin: 20px auto;
-  border: solid 0.2rem rgb(80, 80, 80);
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
   border-radius: 1rem;
   padding: 20px;
 }
@@ -56,6 +55,7 @@
   -moz-transform: translateX(0px) translateY(0px) translateZ(56px);
   -webkit-transform: translateX(0px) translateY(0px) translateZ(56px);
   background-color: #fff;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
 }
 
 #side2 {
@@ -67,6 +67,7 @@
   -webkit-transform: rotatex(90deg) translateX(0px) translateY(0px)
     translateZ(56px);
   background-color: #fff;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
 }
 
 #side3 {
@@ -78,6 +79,7 @@
   -webkit-transform: rotateY(90deg) translateX(0px) translateY(0px)
     translateZ(56px);
   background-color: #fff;
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
 }
 
 #wrapD3Cube p {

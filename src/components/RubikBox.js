@@ -13,6 +13,8 @@ const RubikBox = ({solveCube}) => {
     face5: null,
     face6: null,
   });
+  const [inputState, setInputState] = useState(false);
+  const [file, setFile] = useState(false);
 
   const updateCube = (face, numFace) => {
     const newCube = cube;
@@ -37,8 +39,27 @@ const RubikBox = ({solveCube}) => {
     setCube(newCube);
   }
 
+  const inputFile = (e) => {
+    let reader = new FileReader();
+    reader.onload = onReaderLoad;
+    reader.readAsText(e.target.files[0]);
+    setFile(true);
+  }
+  
+  const onReaderLoad = (e) => {
+    let File = JSON.parse(e.target.result);
+    // updateDataKurir({
+    //   kurir: File.kurir,
+    //   tanggal: File.tanggal,
+    //   kecepatan: File.kecepatan,
+    //   jumlah: File.lokasi.length
+    // });
+    // updateDataLokasiInput(File.lokasi);
+  }
+
   return (
     <div className="RubikBox">
+      {!inputState ? 
       <div className="rubik-container">
         <div id="rubik-face-1">
           <RubikFace text="U" colorPicked={colorPicked} updateCube={updateCube} numFace={5}/>  
@@ -62,9 +83,20 @@ const RubikBox = ({solveCube}) => {
           <ColorPicker setColorPicked={setColorPicked}/>
         </div>
       </div>
-        <div id="button-control">
-          <button onClick={() => solveCube(cube)}>Solve</button>
+      : 
+      <div className="input-container">
+        <div className="input-file">
+          <h1>Input File</h1>
+          <p>JSON File</p>
+          <input id="file" type="file" accept=".json" onChange={inputFile}/>
+          {file ? <button className="input-btn" >Submit</button> : ''}
         </div>
+      </div>
+      }
+      <div className="button-control">
+        <button onClick={() => solveCube(cube)}>Solve</button>
+        <button onClick={() => {inputState ? setInputState(false) : setInputState(true)}}>{ inputState ? 'Input Color': 'InputFile' }</button>
+      </div>
     </div>
   )
 }

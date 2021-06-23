@@ -33,8 +33,8 @@ td {
   justify-self: center;
   word-break: break-all;
   background-color: rgb(61, 61, 61);
-  border-left: solid 0.2rem rgb(80, 80, 80);
-  border-right: solid 0.2rem rgb(80, 80, 80);
+  box-shadow: 6px 19px 23px 1px rgb(0 0 0 / 15%);
+  padding-bottom: 4rem;
 }
 
 #title {

@@ -457,7 +457,7 @@ const constraintMove = (arrayMove, nextMove) => {
   }
 }
 
-const solve = (cube) => {
+export const solve = (cube) => {
   const state = initialState(cube);
   console.log(state);
   let arrayState = [];
@@ -534,5 +534,3 @@ const IDAstar = (arrayState, arrayMove, g, bound) => {
     return min;
   }
 }
-
-module.exports = { solve };
