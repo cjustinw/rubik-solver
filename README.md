@@ -49,11 +49,14 @@ adalah maksimum kedalaman dari tree.
 - React JS
 
 
+## Tentang
+Christopher Justine William 13519006
+
+
 ## Referensi
 - https://en.wikipedia.org/wiki/Iterative_deepening_A*
 - https://github.com/orsenthil/coursedocs/blob/master/gatech/cs6601/lesson_2_challenge_2.rst
 
 
-## Tentang
-Christopher Justine William 13519006
+
 
