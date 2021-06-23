@@ -400,7 +400,10 @@ const moveTo = (direction, state) => {
 
 const constraintMove = (arrayMove, nextMove) => {
   if(arrayMove instanceof Array){
-    let lastMove = arrayMove[arrayMove.length-1];
+    let lastMove = "";
+    if(arrayMove.length > 0){
+      lastMove = arrayMove[arrayMove.length-1];
+    }
     let lastMove2 = "";
     if(arrayMove.length > 1){
       lastMove2 = arrayMove[arrayMove.length-2];
@@ -477,13 +480,12 @@ const canSolve = (state) => {
     }
   }
   console.log(count1 + " " + count2);
-  console.log(goal);
-  console.log(newState);
   return (count1 === 8 && count2 === 12);
 }
 
 export const solve = (cube) => {
   const state = initialState(cube);
+  console.log(state);
   if(!canSolve(state)){
     return false;
   }
@@ -495,7 +497,6 @@ export const solve = (cube) => {
   while(true){
     let result = IDAstar(arrayState, arrayMove, 0, bound);
     if(result === true){
-      console.log(arrayMove);
       return {
         pathState: arrayState,
         pathMove: arrayMove
@@ -512,8 +513,6 @@ const IDAstar = (arrayState, arrayMove, g, bound) => {
   if(arrayState instanceof Array && arrayState instanceof Array){
     let state = arrayState[arrayState.length - 1];
     let f = g + heuristik(state);
-
-    console.log(arrayMove);
     
     if(f > bound){
       return f
@@ -522,10 +521,6 @@ const IDAstar = (arrayState, arrayMove, g, bound) => {
       return true
     }
 
-    let prevMove = ""; 
-    if(arrayMove.length !== 0){
-      prevMove = arrayMove[arrayMove.length - 1];
-    }
     let queue = [];
     
     move.forEach(elmt => {

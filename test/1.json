@@ -1,0 +1,70 @@
+{
+  "cube": {
+    "face1": {
+      "piece1": "Y",
+      "piece2": "O",
+      "piece3": "Y",
+      "piece4": "G",
+      "piece5": "G",
+      "piece6": "G",
+      "piece7": "R",
+      "piece8": "R",
+      "piece9": "G"
+    },
+    "face2": {
+      "piece1": "B",
+      "piece2": "R",
+      "piece3": "W",
+      "piece4": "W",
+      "piece5": "R",
+      "piece6": "W",
+      "piece7": "W",
+      "piece8": "B",
+      "piece9": "W"
+    },
+    "face3": {
+      "piece1": "B",
+      "piece2": "B",
+      "piece3": "W",
+      "piece4": "B",
+      "piece5": "B",
+      "piece6": "O",
+      "piece7": "B",
+      "piece8": "B",
+      "piece9": "O"
+    },
+    "face4": {
+      "piece1": "O",
+      "piece2": "G",
+      "piece3": "O",
+      "piece4": "Y",
+      "piece5": "O",
+      "piece6": "O",
+      "piece7": "Y",
+      "piece8": "G",
+      "piece9": "G"
+    },
+    "face5": {
+      "piece1": "G",
+      "piece2": "O",
+      "piece3": "O",
+      "piece4": "R",
+      "piece5": "W",
+      "piece6": "W",
+      "piece7": "G",
+      "piece8": "W",
+      "piece9": "R"
+    },
+    "face6": {
+      "piece1": "Y",
+      "piece2": "Y",
+      "piece3": "R",
+      "piece4": "Y",
+      "piece5": "Y",
+      "piece6": "Y",
+      "piece7": "B",
+      "piece8": "R",
+      "piece9": "R"
+    }
+  }
+}

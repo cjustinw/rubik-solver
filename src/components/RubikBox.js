@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../css/RubikBox.css'
+import '../css/RubikBox.css';
 import ColorPicker from './ColorPicker';
 import RubikFace from './RubikFace';
 
@@ -14,14 +14,13 @@ const RubikBox = ({solveCube}) => {
     face6: null,
   });
   const [inputState, setInputState] = useState(false);
-  const [file, setFile] = useState(false);
 
   const updateCube = (face, numFace) => {
     const newCube = cube;
-    if(numFace === 1){
+    if(numFace === 1){ 
       newCube.face1 = face;
     }
-    else if(numFace === 2){
+    else if(numFace === 2){ 
       newCube.face2 = face;
     }
     else if(numFace === 3){
@@ -30,7 +29,7 @@ const RubikBox = ({solveCube}) => {
     else if(numFace === 4){
       newCube.face4 = face;
     }
-    else if(numFace === 5){
+    else if(numFace === 5){ 
       newCube.face5 = face;
     }
     else if(numFace === 6){
@@ -43,18 +42,12 @@ const RubikBox = ({solveCube}) => {
     let reader = new FileReader();
     reader.onload = onReaderLoad;
     reader.readAsText(e.target.files[0]);
-    setFile(true);
   }
   
   const onReaderLoad = (e) => {
     let File = JSON.parse(e.target.result);
-    // updateDataKurir({
-    //   kurir: File.kurir,
-    //   tanggal: File.tanggal,
-    //   kecepatan: File.kecepatan,
-    //   jumlah: File.lokasi.length
-    // });
-    // updateDataLokasiInput(File.lokasi);
+    console.log(File.cube);
+    setCube(File.cube);
   }
 
   return (
@@ -89,13 +82,12 @@ const RubikBox = ({solveCube}) => {
           <h1>Input File</h1>
           <p>JSON File</p>
           <input id="file" type="file" accept=".json" onChange={inputFile}/>
-          {file ? <button className="input-btn" >Submit</button> : ''}
         </div>
       </div>
       }
       <div className="button-control">
         <button onClick={() => solveCube(cube)}>Solve</button>
-        <button onClick={() => {inputState ? setInputState(false) : setInputState(true)}}>{ inputState ? 'Input Color': 'InputFile' }</button>
+        <button onClick={() => {inputState ? setInputState(false) : setInputState(true)}}>{ inputState ? 'Input Color': 'Input File' }</button>
       </div>
     </div>
   )
