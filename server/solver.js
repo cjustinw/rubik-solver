@@ -457,7 +457,7 @@ const constraintMove = (arrayMove, nextMove) => {
   }
 }
 
-export const solve = (cube) => {
+const solve = (cube) => {
   // const state = initialState(cube);
   const state = F2(B2(U2(D2(R2(L2(goalState))))));
   console.log(state);
@@ -536,116 +536,4 @@ const IDAstar = (arrayState, arrayMove, g, bound) => {
   }
 }
 
-const convertColor = (color) => {
-  if(color === "G"){
-    return "#21de34";
-  }
-  else if(color === "R"){
-    return "#c92c20";
-  }
-  else if(color === "B"){
-    return "#165a9e";
-  }
-  else if(color === "O"){
-    return "#de9e54";
-  }
-  else if(color === "W"){
-    return "#ffffff";
-  }
-  else if(color === "Y"){
-    return "#fce428";
-  }
-  else{
-    return "";
-  }
-}
-
-export const getColor = (state, face, cubie) => {
-  if(face === 1){
-    if(cubie === 1){
-      return convertColor(state.corner[0][0]);
-    }
-    else if(cubie === 2){
-      return convertColor(state.edge[0][0]);
-    }
-    else if(cubie === 3){
-      return convertColor(state.corner[1][0]);
-    }
-    else if(cubie === 4){
-      return convertColor(state.edge[4][0]);
-    }
-    else if(cubie === 5){
-      return convertColor("G");
-    }
-    else if(cubie === 6){
-      return convertColor(state.edge[5][0]);
-    }
-    else if(cubie === 7){
-      return convertColor(state.corner[4][0]);
-    }
-    else if(cubie === 8){
-      return convertColor(state.edge[8][0]);
-    }
-    else if(cubie === 9){
-      return convertColor(state.corner[5][0]);
-    }
-  }
-  else if(face === 2){
-    if(cubie === 1){
-      return convertColor(state.corner[3][2]);
-    }
-    else if(cubie === 2){
-      return convertColor(state.edge[2][1]);
-    }
-    else if(cubie === 3){
-      return convertColor(state.corner[2][2]);
-    }
-    else if(cubie === 4){
-      return convertColor(state.edge[3][1]);
-    }
-    else if(cubie === 5){
-      return convertColor("W");
-    }
-    else if(cubie === 6){
-      return convertColor(state.edge[1][1]);
-    }
-    else if(cubie === 7){
-      return convertColor(state.corner[0][2]);
-    }
-    else if(cubie === 8){
-      return convertColor(state.edge[0][1]);
-    }
-    else if(cubie === 9){
-      return convertColor(state.corner[1][2]);
-    }
-  }
-  else if(face === 3){
-    if(cubie === 1){
-      return convertColor(state.corner[1][1]);
-    }
-    else if(cubie === 2){
-      return convertColor(state.edge[1][0]);
-    }
-    else if(cubie === 3){
-      return convertColor(state.corner[2][0]);
-    }
-    else if(cubie === 4){
-      return convertColor(state.edge[5][1]);
-    }
-    else if(cubie === 5){
-      return convertColor("R");
-    }
-    else if(cubie === 6){
-      return convertColor(state.edge[6][1]);
-    }
-    else if(cubie === 7){
-      return convertColor(state.corner[5][1]);
-    }
-    else if(cubie === 8){
-      return convertColor(state.edge[9][0]);
-    }
-    else if(cubie === 9){
-      return convertColor(state.corner[6][0]);
-    }
-  }
-}
+module.exports = { solve };

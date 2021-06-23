@@ -1,8 +1,3 @@
 {
-  "files.associations": {
-    "vector": "cpp",
-    "utility": "cpp",
-    "xstring": "cpp",
-    "iostream": "cpp"
-  }
+  "git.ignoreLimitWarning": true
 }

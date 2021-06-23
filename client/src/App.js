@@ -2,7 +2,6 @@ import './App.css';
 import React, {useState} from 'react';
 import Result from './components/Result';
 import RubikBox from './components/RubikBox';
-import {solve} from './components/Solver';
 import Loading from './image/loading.svg'
 
 function App() {
@@ -10,19 +9,28 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const solveCube = (cube) => {
-    let res = solve(cube);
-    if(res){
-      setResult(res);
-      setLoading(false);
-    }
+    setLoading(true);
+    const body = {cube};
+    fetch("/solve", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(body)
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data.result);
+        if(data.result){
+          setResult(data.result);
+          setLoading(false);
+        }
+      })
   }
   
   return (
     <div className="App">
       <h1 id="title">Rubik's Cube Solver </h1>
       <p id="nama">by: Christopher Justine William | 13519006</p>
-      {loading ? <img id="loading" src={Loading} alt="loading" /> : ''}
       <RubikBox solveCube={solveCube}/>
+      {loading ? <img id="loading" src={Loading} alt="loading" /> : ''}
       <Result result={result}/>
     </div>
   );
