@@ -458,8 +458,7 @@ const constraintMove = (arrayMove, nextMove) => {
 }
 
 const solve = (cube) => {
-  // const state = initialState(cube);
-  const state = F2(B2(U2(D2(R2(L2(goalState))))));
+  const state = initialState(cube);
   console.log(state);
   let arrayState = [];
   let arrayMove = [];
