@@ -46,7 +46,7 @@ adalah maksimum kedalaman dari tree.
 
 
 ## Framework/Library
-- React JS
+- React JS, alasan penggunaan : client side rendering, function component
 
 
 ## Tentang
