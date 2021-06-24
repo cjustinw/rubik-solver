@@ -39,7 +39,7 @@ function App() {
       <p id="nama">by : Christopher Justine William | 13519006</p>
       <RubikBox solveCube={solveCube}/>
       {loading ? <img id="loading" src={Loading} alt="Succ" /> : ''}
-      {error ? <h1 id="error">Error</h1> : ''}
+      {error ? <h1 id="error">Error: Invalid input</h1> : ''}
       <Result result={result}/>
     </div>
   );
